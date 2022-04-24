@@ -6,7 +6,7 @@ import sqlite3
 from PyQt5 import uic
 
 from lib.base import replace_atributes_in_files
-from ftp import start_ftp_server
+from sftp import start_sftp_server
 
 import multiprocessing as mp
 
@@ -58,7 +58,11 @@ class Example(QWidget):
         else:
             print("ulululluu")
             # , args=['other', 'args']
-            ftp_server.start()
+#####################################################################################
+#####################################################################################
+            # ftp_server.start() #запускает SFTP сервер
+#####################################################################################
+#####################################################################################
 
     def btn_load_action(self):
         '''Действие для кнопки "Внести изменения"'''
@@ -95,7 +99,7 @@ class Example(QWidget):
 
 if __name__ == '__main__':
     '''Основная процедура'''
-    ftp_server = mp.Process(target=start_ftp_server)
+    ftp_server = mp.Process(target=start_sftp_server)
 
     Form, Window = uic.loadUiType("index.ui")
     app = QApplication(sys.argv)
