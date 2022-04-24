@@ -67,7 +67,7 @@
               <riPortId>F</riPortId>
             </RiPort>
             <TnPort>
-              <tnPortId>TN_B</tnPortId>
+              <tnPortId>TN_A</tnPortId>
             </TnPort>
           </FieldReplaceableUnit>
         </Equipment>

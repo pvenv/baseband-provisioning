@@ -160,7 +160,7 @@
               <fieldReplaceableUnitId>1</fieldReplaceableUnitId>
               <administrativeState>UNLOCKED</administrativeState>
               <TnPort>
-                <tnPortId>TN_B</tnPortId>
+                <tnPortId>TN_A</tnPortId>
               </TnPort>
                     </FieldReplaceableUnit>
          </Equipment>
@@ -176,7 +176,7 @@
             <autoNegEnable>true</autoNegEnable>
             <!-- Reference to physical TN port, must match the TnPort configured in the site equipment file. -->
             <!-- Example encapsulation: ManagedElement=1,Equipment=1,FieldReplaceableUnit=1,TnPort=TN_B -->
-            <encapsulation>ManagedElement=1,Equipment=1,FieldReplaceableUnit=1,TnPort=TN_B</encapsulation>
+            <encapsulation>ManagedElement=1,Equipment=1,FieldReplaceableUnit=1,TnPort=TN_A</encapsulation>
           </EthernetPort>
           <VlanPort xmlns="urn:com:ericsson:ecim:RtnL2VlanPort">
             <vlanPortId>OAM</vlanPortId>

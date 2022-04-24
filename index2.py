@@ -6,6 +6,9 @@ import sqlite3
 from PyQt5 import uic
 
 from lib.base import replace_atributes_in_files
+from ftp import start_ftp_server
+
+import multiprocessing as mp
 
 class Example(QWidget):
 
@@ -52,6 +55,10 @@ class Example(QWidget):
         if os.path.isdir(f'{self.form.sftp_path_input.text()}'.replace('\\.', '')) is False:
             self.form.plainTextEdit.appendHtml(f'Путь {self.form.sftp_path_input.text()} не найден, выберите новый путь!')
             return False
+        else:
+            print("ulululluu")
+            # , args=['other', 'args']
+            ftp_server.start()
 
     def btn_load_action(self):
         '''Действие для кнопки "Внести изменения"'''
@@ -88,8 +95,11 @@ class Example(QWidget):
 
 if __name__ == '__main__':
     '''Основная процедура'''
+    ftp_server = mp.Process(target=start_ftp_server)
 
     Form, Window = uic.loadUiType("index.ui")
     app = QApplication(sys.argv)
     ex = Example()
+    # ftp_server.terminate()
     sys.exit(app.exec_())
+    
