@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+  Description:
+
+       This is an example file for configuration of 1 band, 3 sectors with 3 RRUs.
+
+       Some example data below needs to be changed in order to suit your equipment,
+       for example hubPosition values.
+
+       You should select wanted radio standard further, see the following rpc:
+               
+         <rpc message-id="Select which Radio Standard that should be added" ... >
+             
+       The substitution values that can be found in this file are:
+               
+         Substitution values for Cabinet:
+           %productionDate%
+           %productName%
+           %productNumber%
+           %productRevision%
+           %serialNumber%
+
+         Substitution values for ENodeBFunction:
+           %mcc_1%
+           %mnc_1%
+           %mncLength_1%
+
+-->
+
+<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <capabilities>
+    <capability>urn:ietf:params:netconf:base:1.0</capability>
+    <capability>urn:com:ericsson:ebase:0.1.0</capability>
+    <capability>urn:com:ericsson:ebase:1.1.0</capability>
+  </capabilities>
+</hello>
+]]>]]>
+
+<rpc message-id="Create primary FieldReplaceableUnit with ports in the first rpc" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <config>
+      <ManagedElement>
+        <managedElementId>1</managedElementId>
+        <!-- Digital Unit FRU -->
+        <Equipment>
+          <equipmentId>1</equipmentId>
+          <FieldReplaceableUnit>
+            <fieldReplaceableUnitId>1</fieldReplaceableUnitId>
+            <administrativeState>UNLOCKED</administrativeState>
+            <RiPort>
+              <riPortId>A</riPortId>
+            </RiPort>
+            <RiPort>
+              <riPortId>B</riPortId>
+            </RiPort>
+            <RiPort>
+              <riPortId>C</riPortId>
+            </RiPort>
+            <RiPort>
+              <riPortId>D</riPortId>
+            </RiPort>
+            <RiPort>
+              <riPortId>E</riPortId>
+            </RiPort>
+            <RiPort>
+              <riPortId>F</riPortId>
+            </RiPort>
+            <TnPort>
+              <tnPortId>TN_B</tnPortId>
+            </TnPort>
+          </FieldReplaceableUnit>
+        </Equipment>
+       <NodeSupport>
+          <nodeSupportId>1</nodeSupportId>
+          <MpClusterHandling>
+            <mpClusterHandlingId>1</mpClusterHandlingId>
+            <primaryCoreRef>ManagedElement=1,Equipment=1,FieldReplaceableUnit=1</primaryCoreRef>
+          </MpClusterHandling>
+        </NodeSupport>
+
+      </ManagedElement>
+    </config>
+  </edit-config>
+</rpc>
+
+]]>]]>
+
+<rpc message-id="Close session" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <close-session />
+</rpc>
+]]>]]>
+
+<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <capabilities>
+    <capability>urn:ietf:params:netconf:base:1.0</capability>
+    <capability>urn:com:ericsson:ebase:0.1.0</capability>
+    <capability>urn:com:ericsson:ebase:1.1.0</capability>
+  </capabilities>
+</hello>
+]]>]]>
+
+
+<rpc message-id="Create Cabinet 6601" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <config>
+      <ManagedElement>
+        <managedElementId>1</managedElementId>
+        <Equipment>
+          <equipmentId>1</equipmentId>
+          <FieldReplaceableUnit>
+            <fieldReplaceableUnitId>1</fieldReplaceableUnitId>
+            <positionRef>ManagedElement=1,Equipment=1,Cabinet=1</positionRef>
+        <!--    <EcPort>
+              <ecPortId>1</ecPortId>
+              <hubPosition>X</hubPosition> 
+            </EcPort>  -->
+          </FieldReplaceableUnit>
+          <Cabinet>
+             <cabinetId>1</cabinetId>
+             <climateSystem>STANDARD</climateSystem>
+             <climateRegulationSystem>NOT_APPLICABLE</climateRegulationSystem>
+             <productData>
+                <productName>RBS6601</productName>
+                <productNumber>0</productNumber>
+                <productRevision>0</productRevision>
+                <productionDate>00W01</productionDate>
+                <serialNumber>0</serialNumber>
+             </productData>
+          </Cabinet>
+		  <EcBus>                                                                                                                                                                                                                                                                     
+            <ecBusId>1</ecBusId>                                                                                                                                                                                                                                                
+            <ecBusConnectorRef>ManagedElement=1,Equipment=1,FieldReplaceableUnit=1</ecBusConnectorRef>                                                                                                                                                                       
+          </EcBus>
+		  
+		  <!-- Adding EC-bus for cabinet FieldReplaceableUnit=1 and positionRef to Cabinet -->
+		  
+		  <FieldReplaceableUnit>                                                                                                                                                                                                                                                      
+            <fieldReplaceableUnitId>1</fieldReplaceableUnitId>                                                                                                                                                                                                               
+            <positionRef>ManagedElement=1,Equipment=1,Cabinet=1</positionRef>                                                                                                                                                                                                   
+            <EcPort>                                                                                                                                                                                                                                                            
+              <ecPortId>1</ecPortId>                                                                                                                                                                                                                                      
+              <hubPosition>X</hubPosition>                                                                                                                                                                                                                               
+              <ecBusRef>ManagedElement=1,Equipment=1,EcBus=1</ecBusRef>                                                                                                                                                                                                   
+            </EcPort>                                                                                                                                                                                                                                                           
+          </FieldReplaceableUnit>
+
+          <!-- Adding SUP-1 for cabinet RBS6601 -->
+	      <FieldReplaceableUnit>
+             <fieldReplaceableUnitId>SUP-1</fieldReplaceableUnitId>
+             <administrativeState>UNLOCKED</administrativeState>
+             <positionRef>ManagedElement=1,Equipment=1,Cabinet=1</positionRef>
+             <EcPort>
+               <ecPortId>1</ecPortId>
+               <hubPosition>NA</hubPosition>
+               <ecBusRef>ManagedElement=1,Equipment=1,EcBus=1</ecBusRef>
+             </EcPort>
+                 <!-- Add or remove alarmports and set site alarmslogan here-->
+             <AlarmPort>
+               <alarmPortId>1</alarmPortId>
+             </AlarmPort>
+             <AlarmPort>
+               <alarmPortId>2</alarmPortId>
+             </AlarmPort>
+             <AlarmPort>
+               <alarmPortId>3</alarmPortId>
+             </AlarmPort>
+             <AlarmPort>
+               <alarmPortId>4</alarmPortId>
+             </AlarmPort>
+             <AlarmPort>
+               <alarmPortId>5</alarmPortId>
+             </AlarmPort>
+             <AlarmPort>
+               <alarmPortId>6</alarmPortId>
+             </AlarmPort>
+             <AlarmPort>
+               <alarmPortId>7</alarmPortId>
+             </AlarmPort>
+             <AlarmPort>
+               <alarmPortId>8</alarmPortId>
+             </AlarmPort>
+          </FieldReplaceableUnit>
+        </Equipment>
+        <EquipmentSupportFunction>
+          <equipmentSupportFunctionId>1</equipmentSupportFunctionId>
+          <supportSystemControl>true</supportSystemControl>
+          
+          
+          
+          <Climate xmlns="urn:com:ericsson:ecim:ResClimate">
+             <climateId>1</climateId>
+             <controlDomainRef>ManagedElement=1,Equipment=1,Cabinet=1</controlDomainRef>
+             <climateControlMode>NORMAL</climateControlMode>
+          </Climate>
+        </EquipmentSupportFunction>
+      </ManagedElement>
+    </config>
+  </edit-config>
+</rpc>
+
+]]>]]>
+
+<rpc message-id="Close session" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <close-session />
+</rpc>
+]]>]]>

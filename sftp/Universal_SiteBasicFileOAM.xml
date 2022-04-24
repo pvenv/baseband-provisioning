@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- License preparation -->
+<!-- Setting of the License Manager Fingerprint, which triggers installation of the Licence Key File. -->
+<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <capabilities>
+    <capability>urn:ietf:params:netconf:base:1.0</capability>
+    <capability>urn:com:ericsson:ebase:0.1.0</capability>
+  </capabilities>
+</hello>
+]]>]]>
+<rpc message-id="Set License Manager Fingerprint" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <ManagedElement xmlns="urn:com:ericsson:ecim:ComTop">
+        <managedElementId>1</managedElementId>
+        <SystemFunctions>
+          <systemFunctionsId>1</systemFunctionsId>
+          <Lm xmlns="urn:com:ericsson:ecim:RcsLM">
+            <lmId>1</lmId>
+            <!-- License Manager Fingerprint should be set to the nodes logical name -->
+            <fingerprint>BTS_56_00618_G</fingerprint>
+          </Lm>
+        </SystemFunctions>
+      </ManagedElement>
+    </config>
+  </edit-config>
+</rpc>
+]]>]]>
+<rpc message-id="Close Session" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <close-session></close-session>
+</rpc>
+]]>]]>
+
+<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <capabilities>
+    <capability>urn:ietf:params:netconf:base:1.0</capability>
+    <capability>urn:com:ericsson:ebase:0.1.0</capability>
+  </capabilities>
+</hello>
+]]>]]>
+<rpc message-id="Activate Licenced Features" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <ManagedElement xmlns="urn:com:ericsson:ecim:ComTop">
+        <managedElementId>1</managedElementId>
+        <SystemFunctions>
+          <systemFunctionsId>1</systemFunctionsId>
+          <Lm xmlns="urn:com:ericsson:ecim:RcsLM">
+            <lmId>1</lmId>
+            <!-- VR license -->
+            <FeatureState>
+              <featureStateId>CXC4011823</featureStateId>
+              <featureState>ACTIVATED</featureState>
+            </FeatureState>			 
+         </Lm>
+        </SystemFunctions>
+      </ManagedElement>
+    </config>
+  </edit-config>
+</rpc>
+]]>]]>
+<rpc message-id="Close Session" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <close-session></close-session>
+</rpc>
+]]>]]>
+
+
+
+
+
+<!-- System Functions Configuration-->
+<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <capabilities>
+    <capability>urn:ietf:params:netconf:base:1.0</capability>
+  </capabilities>
+</hello>
+]]>]]>
+
+<rpc message-id="Configure System Functions" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <ManagedElement xmlns="urn:com:ericsson:ecim:ComTop">
+        <managedElementId>1</managedElementId>        
+        <SystemFunctions>
+          <systemFunctionsId>1</systemFunctionsId>
+          <SecM xmlns="urn:com:ericsson:ecim:ComSecM">
+            <secMId>1</secMId>
+            <UserManagement>
+              <userManagementId>1</userManagementId>
+              <!-- One or more target types for TBAC. -->
+              <!-- Example targetTypes: TCU03_81,TCU -->
+			  <!--
+              <targetType>%targetType1%</targetType>
+              <targetType>%targetType2%</targetType>
+			  -->
+              <UserIdentity xmlns="urn:com:ericsson:ecim:RcsUser" >
+                <userIdentityId>1</userIdentityId>
+                <!-- At least the first maintenance user should be defined during AI since it's not possible to do later. -->
+                <MaintenanceUser>
+                  <maintenanceUserId>1</maintenanceUserId>
+                  <!-- User name and password to use when logging in as a maintenance user over SSH. -->
+                  <!-- Can be ommitted if only maintenance user over TLS will be used. -->
+                  <userName>rbs</userName>
+                  <password>
+                    <cleartext/>
+                    <password>rbs</password>
+                  </password>                             
+                  <!-- Full subject name of a certificate to use when logging in as a maintenance user over TLS. -->
+                  <!-- Can be committed if only maintenance user over SSH will be used. -->
+                  <!-- Example subjectName: CN=Maintuser -->
+                  <!-- <subjectName>%subjectName_maintUser1%</subjectName> -->
+                </MaintenanceUser>
+              </UserIdentity>
+            </UserManagement>
+          </SecM>
+		  	 <SysM xmlns="urn:com:ericsson:ecim:ComSysM">
+ <sysMId>1</sysMId>
+		  
+          </SysM>
+        </SystemFunctions>
+      </ManagedElement>
+    </config>
+  </edit-config>
+</rpc>
+]]>]]>
+
+<rpc message-id="Close Session" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <close-session/>
+</rpc>
+]]>]]>
+
+
+<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <capabilities>
+    <capability>urn:ietf:params:netconf:base:1.0</capability>
+    <capability>urn:com:ericsson:ebase:0.1.0</capability>
+  </capabilities>
+</hello>
+]]>]]>
+<rpc message-id="Configure Routers" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+	<ManagedElement xmlns="urn:com:ericsson:ecim:ComTop">
+        <managedElementId>1</managedElementId>
+         <Equipment>
+          <equipmentId>1</equipmentId>
+            <FieldReplaceableUnit>
+              <fieldReplaceableUnitId>1</fieldReplaceableUnitId>
+              <administrativeState>UNLOCKED</administrativeState>
+              <TnPort>
+                <tnPortId>TN_B</tnPortId>
+              </TnPort>
+                    </FieldReplaceableUnit>
+         </Equipment>
+             <Transport>
+          <transportId>1</transportId>
+          <EthernetPort xmlns="urn:com:ericsson:ecim:RtnL2EthernetPort">
+            <!-- Example ethernetPortId: TN_B -->
+            <ethernetPortId>1</ethernetPortId>
+            <administrativeState>UNLOCKED</administrativeState>
+            <!-- Example admOperatingMode: 10G_FULL -->
+            <admOperatingMode>ANY</admOperatingMode>
+            <!-- Example autoNegEnable: false -->
+            <autoNegEnable>true</autoNegEnable>
+            <!-- Reference to physical TN port, must match the TnPort configured in the site equipment file. -->
+            <!-- Example encapsulation: ManagedElement=1,Equipment=1,FieldReplaceableUnit=1,TnPort=TN_B -->
+            <encapsulation>ManagedElement=1,Equipment=1,FieldReplaceableUnit=1,TnPort=TN_B</encapsulation>
+          </EthernetPort>
+          <VlanPort xmlns="urn:com:ericsson:ecim:RtnL2VlanPort">
+            <vlanPortId>OAM</vlanPortId>
+            <!-- Example enacapsulation: ManagedElement=1,Transport=1,EthernetPort=TN_B -->
+            <encapsulation>ManagedElement=1,Transport=1,EthernetPort=1</encapsulation>
+            <!-- Example isTagged: true -->
+            <isTagged>true</isTagged>
+            <!-- Example vlanId: 810 -->
+            <vlanId>2666</vlanId>
+            <userLabel>VLAN Interface for OAM connection</userLabel>
+          </VlanPort>
+          <Router xmlns="urn:com:ericsson:ecim:RtnL3Router">
+            <routerId>OAM</routerId>
+            <InterfaceIPv4 xmlns="urn:com:ericsson:ecim:RtnL3InterfaceIPv4">
+              <interfaceIPv4Id>OAM</interfaceIPv4Id>
+              <AddressIPv4 xmlns="urn:com:ericsson:ecim:RtnL3AddressIPv4">
+                <addressIPv4Id>OAM</addressIPv4Id>
+                <!-- Example address: 1.2.3.4/28 -->
+                <address>10.91.6.101/30</address>
+              </AddressIPv4>
+              <encapsulation>ManagedElement=1,Transport=1,VlanPort=OAM</encapsulation>
+              <userLabel>IP Interface for OAM connection</userLabel>
+            </InterfaceIPv4>
+            <RouteTableIPv4Static xmlns="urn:com:ericsson:ecim:RtnRoutesStaticRouteIPv4">
+              <routeTableIPv4StaticId>Routes_OAM</routeTableIPv4StaticId>
+              <!-- One or more routes, default or specific, to be able to reach the OAM network. -->
+              <Dst>
+                <dstId>1</dstId>
+                <NextHop>
+                  <nextHopId>Routes_OAM</nextHopId>
+                  <!-- Example address: 1.2.3.4 -->
+                  <address>10.91.6.102</address>
+                </NextHop>
+                <!-- Example dst: 0.0.0.0/0 -->
+                <dst>0.0.0.0/0</dst>
+              </Dst>
+            </RouteTableIPv4Static>
+          </Router>
+        
+       </Transport>
+      </ManagedElement>
+    </config>
+  </edit-config>
+</rpc>
+]]>]]>
+
+<rpc message-id="Close Session" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <close-session/>
+</rpc>
+
+]]>]]>
+
+
+<!-- OAM Access Point configuration and set networkManagedElementId of the ME -->
+<!-- NOTE: MUST be set after transport configuration -->
+<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <capabilities>
+    <capability>urn:ietf:params:netconf:base:1.0</capability>
+  </capabilities>
+</hello>
+]]>]]>
+
+<rpc message-id="Configure OAM Access Point and set networkManagedElementId of the ME" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <ManagedElement xmlns="urn:com:ericsson:ecim:ComTop">
+        <managedElementId>1</managedElementId>
+        <!-- A unique identity of the Managed Element (ME) must be set in attribute networkManagedElementId. 
+           This is to be able to connect the ME MIB to the overall network MIB, and to be able to uniquely 
+           identify the ME in for instance, alarms, performance management data, and logs.
+       
+           NOTE: setting of networkManagedElementId MUST be in the last config RPC!!!
+         -->
+        <networkManagedElementId>BTS_56_00618_G</networkManagedElementId>
+        <SystemFunctions>
+          <systemFunctionsId>1</systemFunctionsId>
+          <SysM xmlns="urn:com:ericsson:ecim:ComSysM">
+            <sysMId>1</sysMId>
+            <!-- 
+                OamAccessPoint (OAM Access Point configuration)
+                  - Insert reference to Transport IP address used for OAM traffic (ipv4address)
+                  NOTE: MUST be set after transport configuration
+                 -->
+            <OamAccessPoint xmlns="urn:com:ericsson:ecim:RcsOamAccessPoint">
+              <oamAccessPointId>1</oamAccessPointId>
+              <ipv4address>ManagedElement=1,Transport=1,Router=OAM,InterfaceIPv4=OAM,AddressIPv4=OAM</ipv4address>
+            </OamAccessPoint>
+          </SysM>
+        </SystemFunctions>
+      </ManagedElement>
+    </config>
+  </edit-config>
+</rpc>
+]]>]]>
+
+<rpc message-id="Close Session" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <close-session/>
+</rpc>
+]]>]]>
+
